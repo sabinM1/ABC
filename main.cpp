@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <windows.h>
-#pragma execution_character_set( "utf-8" )
 
 using namespace std;
 
@@ -17,13 +16,13 @@ struct AB
     void Set_Culoare (int caz)
     {
         if(caz == 1)
-            SetConsoleTextAttribute (p, 4);
+            SetConsoleTextAttribute (p , 4);
         else if(caz == 2)
-            SetConsoleTextAttribute (p, 7);
+            SetConsoleTextAttribute (p , 7);
         else
             return;
     }
-    void Afis (char str[], int caz)
+    void Afis (const char str[], int caz)
     {
         if(caz == 1)
         {
@@ -109,7 +108,7 @@ struct AB
     }
     void sterg(Nod *& c, int k)
     {
-        Nod *aux,*f;
+        Nod *aux;
         if(c)
         {
             if(c -> info == k)
@@ -216,6 +215,27 @@ struct AB
         AfisarePSO (r -> dr);
         cout << r-> info << " ";
     }
+    void Sortare (Nod *r)
+    {
+        if (r == NULL)
+            return;
+        Sortare(r -> st);
+        cout << r -> info << " ";
+        Sortare (r -> dr);
+    }
+    void AfisareSortata (Nod *r)
+    {
+        if(r == NULL)
+        {
+            Afis("Graful este nul\n" , 1);
+            return;
+        }
+        SetConsoleTextAttribute (p , 14);
+        cout << "Șirul valorilor sortate este:\n";
+        Sortare(r);
+        SetConsoleTextAttribute (p , 7);
+        cout << "\n";
+    }
 } T;
 
 void prezentaison()
@@ -255,6 +275,7 @@ int main()
         cout << "5 - Afișare_Preordine\n";
         cout << "6 - Afișare_Inordine\n";
         cout << "7 - Afișare_Postordine\n";
+        cout << "8 - Afișare_Sortata\n";
         cout << "0 - exit\n";
         cout << "\n";
         cout << "Introduceți opțiunea: \n";
@@ -301,11 +322,14 @@ int main()
         case 7:
             T.Afisare(r, 3);
             break;
+        case 8:
+            T.AfisareSortata(r);
+            break;
         case 0:
             ;
             break;
         default :
-            cout << "\nOpțiune invalidă!\n";
+            cout << "Opțiune invalidă!\n";
         }
         cout << "\n";
 
