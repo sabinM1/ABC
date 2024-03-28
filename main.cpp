@@ -255,13 +255,9 @@ int main()
     SetConsoleOutputCP(65001);
     ifstream fin ("test.in");
     prezentaison();
-    int optiune, X, N = 0;
-    fin >> N;
-    while(N --)
-    {
-        fin >> X;
+    int optiune, X;
+    while(fin >> X)
         T.AdaugaI(r, X);
-    }
     HANDLE p = GetStdHandle (STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute (p, 100);
     cout << "Tema: Arbori Binari de Căutare\n";
